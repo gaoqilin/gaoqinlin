@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="FirstApp" ng-controller="FristCtrl">
+
+<input type="text" ng-model="data">
+
+<!--绑定数据两种方式-->
+<!--<p>{{data}}</p>加载页面的时候会看到表达式{{data}}-->
+
+<!--<p>{{data}}</p>-->
+<p ng-bind="data"></p>
+
+<button ng-click="showData()">SHOW data</button>
+
+<!--引入angularJs-->
+<script src="vendor/angular/angular.min.js"></script>
+<script src="javascript/app.js"></script>
+</body>
+</html>

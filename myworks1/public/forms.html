@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .error1{
+            box-shadow: 0 0 5px #a10;
+        }
+    </style>
+</head>
+<body ng-app="asd" ng-controller="JKL as Ctrl">
+
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form name="myform" ng-submit="Ctrl.func()" class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Username</label>
+                    <div class="col-md-10">
+                        <input type="text"
+                               ng-model="username"
+                               name="username"
+                               ng-minlength="4"
+                               ng-maxlength="10"
+                               required
+                               ng-class="{'error1':myform.username.$invalid && myform.username.$touched}"
+                               class="form-control">
+                    </div>
+                    <p ng-show="myform.$invalid && myform.username.$touched" style="margin-left: 112px;margin-top: 10px;display: inline-block">你的输入有误</p>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit"
+                                ng-disabled="myform.$invalid"
+                                class="btn btn-primary">Sign in</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<p ng-repeat="data in Ctrl.arr">{{data}}</p>
+
+<script src="vendor/angular/angular.js"></script>
+
+<script>
+    var app=angular.module('asd',[]);
+    app.controller('JKL',[function () {
+        var self=this;
+        self.func=function () {
+            alert("输入正确");
+        };
+
+        self.arr=[
+            '111111',
+            '222222',
+            '333333',
+            '444444',
+            '555555'
+        ];
+    }]);
+
+
+</script>
+
+
+
+</body>
+</html>

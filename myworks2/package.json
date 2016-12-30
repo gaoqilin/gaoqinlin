@@ -1,0 +1,21 @@
+{
+  "name": "myworks2",
+  "version": "1.0.0",
+  "description": "node_test",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": " "
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "gao",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

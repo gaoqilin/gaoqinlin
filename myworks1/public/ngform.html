@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .error1{
+            box-shadow: 0 0 5px #a10;
+        }
+    </style>
+</head>
+<body style="padding-top: 50px" ng-app="myapp"  ng-controller="FormCtrl as Ctrl">
+<section class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal"
+                  ng-submit="Ctrl.func()"
+                  name="myform"
+                  role="form">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text"
+                               name="email"
+                               ng-model="Ctrl.user.email"
+                               class="form-control"
+                               id="inputEmail3"
+                               ng-minlength="4"
+                               ng-maxlength="16"
+                               ng-class="{'error1':myform.email.$invalid && myform.email.$touched}"
+                               required
+                               placeholder="Email"
+                        >
+                    </div>
+                </div>
+                <p ng-show="myform.$invalid && myform.email.$touched">你输入的信息有误</p>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password"
+                               class="form-control"
+                               id="inputPassword3"
+                               name="password"
+                               ng-model="Ctrl.user.password"
+                               ng-minlength="4"
+                               ng-maxlength="16"
+                               ng-class="{'error1':myform.password.$invalid && myform.password.$touched}"
+                               required
+                               placeholder="Password">
+                    </div>
+                </div>
+                <p ng-show="myform.$invalid && myform.password.$touched">你输入的信息有误</p>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit"
+                                ng-click="Ctrl.submitForm()"
+                                ng-disabled="myform.$invalid"
+                                class="btn btn-default">Sign in</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="vendor/angular/angular.min.js"></script>
+<script>
+    var app =angular.module('myapp',[]);
+           app.controller('FormCtrl',['$http',function ($http) {
+                var self=this;
+                self.user={};
+                self.submitForm=function () {
+                    console.log(self.user);
+                    $http.post('/user_in',self.user).then(function (response) {
+                        alert(response);
+                    });
+//                    $http.get('/user_in',self.user).then(function (response) {
+//                        alert(response);
+//                    });
+                };
+               self.func=function () {
+                   alert("输入正确");
+               };
+    }]);
+    //post 提交表单不可以见  get提交表单可见
+</script>
+</body>
+</html>
